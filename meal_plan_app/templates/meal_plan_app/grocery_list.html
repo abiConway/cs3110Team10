@@ -1,0 +1,26 @@
+{% extends "meal_plan_app/base_template.html" %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<link href="{% static 'css/grocery_list.css' %}" rel="stylesheet">
+<link href="{% static 'css/base.css' %}" rel="stylesheet">
+
+<br><h1>Grocery List</h1>
+
+    <div class="inbox">
+        {% for ingredient, amount in unique_ingredients_list %}
+            <div class="item">
+                <input type="checkbox">
+                    <p>{{ amount }}: <strong>{{ ingredient }}</strong></p>
+            </div>
+        {% endfor %}
+    </div>
+  
+  
+  
+    <a href="{% url 'meal_list' %}"><button class="button">Back to Meal List</button></a>
+  <script>
+  </script>
+
+{% endblock %}

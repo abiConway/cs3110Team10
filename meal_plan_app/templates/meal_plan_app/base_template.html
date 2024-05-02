@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Meal Generator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+
+
+
+</head>
+<body>
+<nav class="navbar">
+    <a class="navbar-brand" href="{% url 'index' %}">
+       COLLEGE <br> MEAL PLANNER
+    </a>
+
+    <div class="dropdown">
+        <button class="btn dropdown-toggle btn-sm" data-bs-toggle="dropdown">
+            ACCOUNT
+        </button>
+        <ul class="dropdown-menu">
+            {% if user.is_authenticated %}
+                <li><a class="dropdown-item" href="{% url 'user_page' %}">PROFILE</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">LOGOUT</a></li>
+            {% else %}
+                <a class="dropdown-item" href="{% url 'login' %}">LOGIN</a>
+                <a class="dropdown-item" href="{% url 'register-page' %}">REGISTER</a>
+            {% endif %}
+        </ul>
+      </div>
+
+
+</nav>
+<div class="container-fluid">
+    <div class="col-sm-10">
+        <!-- add block content from html template -->
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>
